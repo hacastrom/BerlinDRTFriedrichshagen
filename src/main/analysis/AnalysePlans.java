@@ -27,16 +27,7 @@ class AnalysePlans {
         String rootPath = null;
         String percent = "1";
 
-        switch (username) {
-            case "jakob":
-                rootPath = "C:/Users/jakob/tubCloud/Shared/DRT/PolicyCase/";
-                break;
-            case "david":
-                rootPath = "C:/Users/david/ENTER_PATH_HERE";
-                break;
-            default:
-                System.out.println("Incorrect Base Path");
-        }
+
 
         String popBase = rootPath + "Input_global/plans/berlin-plans-10pct-frohnau-scrubbed.xml.gz";
         String popPolicy = rootPath + "2019-07-23/05_FullRun/output/berlin-v5.4-10pct.output_plans.xml.gz";
