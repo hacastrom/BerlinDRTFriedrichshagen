@@ -6,24 +6,22 @@ import java.util.Map;
 
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.population.Person;
-import org.matsim.class2019.analysis.Trip;
-import org.matsim.class2019.analysis.TripEventHandler;
 import org.matsim.core.api.experimental.events.EventsManager;
 import org.matsim.core.events.EventsUtils;
 import org.matsim.core.events.MatsimEventsReader;
 
 public class ObtainModalSplit {
 	
-	public static void main() {
+	public static void main(String[] args) {
 	
-	String caseOfInterest = "";
-	String nutzer = "";
+	String caseOfInterest = "DRT";
+	String nutzer = "Hugo";
 	String rootPath = null;
 	
 	switch(nutzer) {
 	
 	case("Hugo"):
-	    rootPath = "";
+	    rootPath = "D:/TUbit/Shared/MATSim HA2/Input Analysis/";
 	case ("Hugor2"):
 		rootPath = "";	
     default:
@@ -33,7 +31,7 @@ public class ObtainModalSplit {
 	EventsManager manager = EventsUtils.createEventsManager();
 	TripEventHandler handler = new TripEventHandler();
 	manager.addHandler(handler);
-	new MatsimEventsReader(manager).readFile(events.toString());
+	new MatsimEventsReader(manager).readFile(inputEvents.toString());
 
 	Map<Id<Person>, List<Trip>> tripByPerson = handler.getTripToPerson();
 
@@ -58,5 +56,5 @@ public class ObtainModalSplit {
 	for (Map.Entry<String, Double> entry : countByMode.entrySet()) {
 		System.out.println(entry.getKey() + ": " + entry.getValue() + " / " + 100 * entry.getValue() / totalTrips + "%");
 	}
-	
+	}
 }
