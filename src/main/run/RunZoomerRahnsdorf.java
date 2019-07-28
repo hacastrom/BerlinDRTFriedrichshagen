@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class RunZoomerFHagen {
+public class RunZoomerRahnsdorf {
 
     public static void main(String[] args) {
         String username = "hugo";
