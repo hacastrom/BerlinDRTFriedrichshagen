@@ -33,12 +33,6 @@ public class RunZoomerRahnsdorf {
         String rootPath = null;
 
         switch (username) {
-            case "jakob":
-                rootPath = "C:/Users/jakob/tubCloud/Shared/DRT/PolicyCase/";
-                break;
-            case "david":
-                rootPath = "D:/Eigene Dateien/Dokumente/Uni/tubCloud/Master/02_SoSe2019/MatSim/DRT/PolicyCase/";
-                break;
             case "hugo":
             	rootPath = "D:/TUbit/Shared/MATSim HA2/InputPolicycase/";
             default:

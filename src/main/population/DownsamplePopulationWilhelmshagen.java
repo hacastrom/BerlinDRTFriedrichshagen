@@ -40,30 +40,38 @@ import java.util.Collection;
  * after  : AGENTS --- inside:1845 --- outside: 489506--- freight: 2756 --- total: 494107
  */
 
-public class DownsamplePopulationFrohnau {
+public class DownsamplePopulationWilhelmshagen {
         public static void main(String[] args) {
 
-            String username = "jakob";
-            String rootPath = null;
-            String percent = "1";
-
-            switch (username) {
-                case "jakob":
-                    rootPath = "C:/Users/jakob/tubCloud/Shared/DRT/PolicyCase/";
-                    break;
-                case "david":
-                    rootPath = "C:/Users/david/ENTER_PATH_HERE";
-                    break;
-                default:
-                    System.out.println("Incorrect Base Path");
-            }
-            String inputPopFilename = rootPath + "Input_global/plans/berlin-plans-" + percent + "pct-original.xml.gz";
-            String outputPopFilename = rootPath  + "Input_global/plans/berlin-plans-" + percent + "pct-frohnau.xml.gz";
-            String outputPopFilenameScrubbed = rootPath  + "Input_global/plans/berlin-plans-" + percent + "pct-frohnau-scrubbed.xml.gz";
-            String AgentsWithinFrohnauFilename = rootPath + "Input_global/agents-"+ percent +"pct-InsideFrohnau.txt";
-            String AgentsOutsideFrohnauFilename = rootPath + "Input_global/agents-"+ percent +"pct-OutsideFrohnau.txt";
-            String ActivitiesFilename = rootPath + "Input_global/activitiesInFrohnau-"+ percent +"pct.txt";
-            String filterShape = rootPath + "Frohnau/Frohnau-1.shp" ;
+//            String username = "jakob";
+//            String rootPath = null;
+//            String percent = "1";
+//
+//            switch (username) {
+//                case "jakob":
+//                    rootPath = "C:/Users/jakob/tubCloud/Shared/DRT/PolicyCase/";
+//                    break;
+//                case "david":
+//                    rootPath = "C:/Users/david/ENTER_PATH_HERE";
+//                    break;
+//                default:
+//                    System.out.println("Incorrect Base Path");
+//            }
+//            String inputPopFilename = rootPath + "Input_global/plans/berlin-plans-" + percent + "pct-original.xml.gz";
+//            String outputPopFilename = rootPath  + "Input_global/plans/berlin-plans-" + percent + "pct-frohnau.xml.gz";
+//            String outputPopFilenameScrubbed = rootPath  + "Input_global/plans/berlin-plans-" + percent + "pct-frohnau-scrubbed.xml.gz";
+//            String AgentsWithinFrohnauFilename = rootPath + "Input_global/agents-"+ percent +"pct-InsideFrohnau.txt";
+//            String AgentsOutsideFrohnauFilename = rootPath + "Input_global/agents-"+ percent +"pct-OutsideFrohnau.txt";
+//            String ActivitiesFilename = rootPath + "Input_global/activitiesInFrohnau-"+ percent +"pct.txt";
+//            String filterShape = rootPath + "Frohnau/Frohnau-1.shp" ;
+        	
+            String inputPopFilename = "D:\\TUbit\\Shared\\MATSim HA2\\ModifyPopulation\\berlin-v5.3-1pct.0.plans.xml";
+            String outputPopFilename = "D:\\TUbit\\Shared\\MATSim HA2\\ModifyPopulation\\berlin-Friedrichshagen-Plans.xml.gz";
+            String outputPopFilenameScrubbed = "D:\\TUbit\\Shared\\MATSim HA2\\ModifyPopulation\\berlin-Friedrichshagen-Plans-Scrubbed.xml.gz" ;
+            String AgentsWithinFriedrichshagenFilename =  "D:\\TUbit\\Shared\\MATSim HA2\\ModifyPopulation\\inside-Friedrichhagen.txt";
+            String AgentsOutsideFriedrichshagenFilename = "D:\\TUbit\\Shared\\MATSim HA2\\ModifyPopulation\\outside-Friedrichhagen.txt";
+            String ActivitiesFilename = "D:\\TUbit\\Shared\\MATSim HA2\\ModifyPopulation\\outside-Friedrichhagen.txt";
+            String filterShape = "D:\\TUbit\\Shared\\MATSim HA2\\Shapes\\Shape Area of interest\\Wilhelmshagen.shp";  
 
             // Initialize Variables
             ArrayList<String> agentsWithinFrohnau = new ArrayList<>() ;
@@ -128,8 +136,8 @@ public class DownsamplePopulationFrohnau {
             // Print and Save Results
             System.out.println("AGENTS --- inside:" + agentsWithinFrohnau.size() + " --- outside: " + agentsOutsideFrohnau.size() + "--- freight: " + freightTotal + " --- total: " + agentsTotal);
 
-            writeIdsToFile(agentsWithinFrohnau, AgentsWithinFrohnauFilename);
-            writeIdsToFile(agentsOutsideFrohnau, AgentsOutsideFrohnauFilename);
+            writeIdsToFile(agentsWithinFrohnau, AgentsWithinFriedrichshagenFilename);
+            writeIdsToFile(agentsOutsideFrohnau, AgentsOutsideFriedrichshagenFilename);
             writeIdsToFile(activities, ActivitiesFilename);
         }
 
