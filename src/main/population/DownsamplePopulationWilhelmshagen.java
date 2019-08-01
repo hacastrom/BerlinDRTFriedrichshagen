@@ -31,14 +31,7 @@ import java.util.Collection;
  * same agents and plans as the first population. The only difference is that all instances of "access_walk" and
  * "egress_walk" are replaced with "non_network_walk", so as to be in compliance with the new standard practices of MATSim.
  *
- * 1pct
- * before : AGENTS --- inside:185 --- outside: 48838--- freight: 267 --- total: 49290
- * after  : AGENTS --- inside:169 --- outside: 48854--- freight: 267 --- total: 49290
- *
- * 10pct:
- * before : AGENTS --- inside:1955 --- outside: 489396--- freight: 2756 --- total: 494107
- * after  : AGENTS --- inside:1845 --- outside: 489506--- freight: 2756 --- total: 494107
- */
+*/
 
 public class DownsamplePopulationWilhelmshagen {
         public static void main(String[] args) {

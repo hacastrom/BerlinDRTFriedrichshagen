@@ -24,6 +24,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// Class adapted from RunZoomer available for Frohnau DRT.
 
 public class RunZoomerRahnsdorf {
 
@@ -41,7 +42,6 @@ public class RunZoomerRahnsdorf {
 
         
         String configFileName = rootPath + "berlin-v5.4-1pct.config.xml";
-//        String configFileName = rootPath + "Input_global/berlin-config-ReRoute.xml";
 
         // -- C O N F I G --
         Config config = ConfigUtils.loadConfig(configFileName);

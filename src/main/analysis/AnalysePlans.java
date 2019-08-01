@@ -50,16 +50,11 @@ class AnalysePlans {
 
         String popInput = rootPath + "Plans-" + caseOfInterest + "Case.xml.gz";
         String networkInput = rootPath + "Network-" + caseOfInterest + "Case.xml.gz";
-//        String outputFile = rootPath + "analysis-" + caseOfInterest + "/plansAnalysis.txt";
         String aDRTlines = rootPath + "analysis-" + caseOfInterest + "drtLines.txt";
         String aResults = rootPath + "analysis-" + caseOfInterest + "Results.txt";
         ArrayList<String> aDRTlegs = new ArrayList<>(); 
         long legID = 0;
 
-//       BufferedWriter bw = IOUtils.getBufferedWriter(outputFile);
-//       String headers = "nPersons, nLegs, nCarLegs, nPtLegs, nZoomerLegs, totalZoomerDistance, totalCarDistance, totalPtDistance, ";
-//     bw.write(headers);
-//      bw.newLine();
 
             Scenario sc = ScenarioUtils.createScenario(ConfigUtils.createConfig());
             new PopulationReader(sc).readFile(popInput);
@@ -74,6 +69,7 @@ class AnalysePlans {
             long nBicycleLegs = 0;
             long nZoomerLegs = 0;
             long nWalklegs = 0;
+            long nTWalklegs = 0;
             long nCarUsingPersons = 0;
             long nPtUsingPersons = 0;
             double totalCarDistance = 0. ;
@@ -101,9 +97,6 @@ class AnalysePlans {
                         nZoomerLegs++ ;
                         totalZoomerDistance +=  leg.getRoute().getDistance();
                         legID = nZoomerLegs;
-//                        Id<Link> linkBegin = leg.getRoute().getStartLinkId();
-//                        Link linkB = network.getLinks().get(leg.getRoute().getStartLinkId());
-//                        Node node = linkB.getFromNode();
                         String coordI = network.getLinks().get(leg.getRoute().getStartLinkId()).getToNode().getCoord().toString();
                         String coordF = network.getLinks().get(leg.getRoute().getEndLinkId()).getToNode().getCoord().toString();
                         String aux = new String(Objects.toString(legID)+ ";" + Objects.toString(leg.getMode()) + ";" + Objects.toString(leg.getDepartureTime()) +";"+ coordI + ";"+coordF );
@@ -112,33 +105,30 @@ class AnalysePlans {
                     	nBicycleLegs++;
                     	totalBicycleDistance += leg.getRoute().getDistance() ;
                     }
-                    else if ("Walk".equals(leg.getMode())) {
+                    else if ("walk".equals(leg.getMode())) {
                     	nWalklegs++;
                     	totalWalkDistance += leg.getRoute().getDistance() ;
+                    }
+                    else if ("transit_walk".equals(leg.getMode())) {
+                    	nTWalklegs++;
                     }
                         
                 }
                 if ( carUser ) nCarUsingPersons++ ;
                 if ( ptUser ) nPtUsingPersons++ ;
             }
-  //          bw.newLine();
-   //         bw.write(pop.getPersons().size() + "," + nCarLegs + "," + 1.*nCarLegs/pop.getPersons().size()+ "," +
-    //                nCarUsingPersons + "," + nPtLegs + "," + totalCarDistance/1000 + "," + totalPtDistance/1000 + "," +
-    //                nZoomerLegs + "," + totalZoomerDistance/1000);
-
-   //     bw.flush();
-    //    bw.close();
         ArrayList<String> results = new ArrayList<>();
         results.add("Total legs by Car: " + nCarLegs);
         results.add("Total legs by PT: " + nPtLegs);
         results.add("Total legs by Bycicle: " + nBicycleLegs);
         results.add("Total legs by Walk: " + nWalklegs);
+        results.add("Total legs by Transit-Walk: " + nTWalklegs);
         results.add("Total legs by Zoomer: " + nZoomerLegs);
-        results.add("Total distance by Car: " + totalCarDistance);
-        results.add("Total distance by Pt: " + totalPtDistance);
-        results.add("Total distance by Walk: " + totalWalkDistance);
-        results.add("Total distance by Bicycle: " + totalBicycleDistance);
-        results.add("Total distance by Zoomer: " + totalZoomerDistance);
+        results.add("Total distance by Car: " + totalCarDistance/1000);
+        results.add("Total distance by Pt: " + totalPtDistance/1000);
+        results.add("Total distance by Walk: " + totalWalkDistance/1000);
+        results.add("Total distance by Bicycle: " + totalBicycleDistance/1000);
+        results.add("Total distance by Zoomer: " + totalZoomerDistance/1000);
         results.add("Total Car Users: " + nCarUsingPersons);
         results.add("Total PT Users: " + nPtUsingPersons);
         writeToFile(aDRTlegs, aDRTlines);
