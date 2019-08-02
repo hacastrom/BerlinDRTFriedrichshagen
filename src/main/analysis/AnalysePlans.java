@@ -135,23 +135,6 @@ class AnalysePlans {
         writeToFile(results, aResults);
         }
 
-
-
-    static void writePlansFile(String headers, String analysisBase, String analysisPolicy, String outputFile){
-        BufferedWriter bw = IOUtils.getBufferedWriter(outputFile);
-        try {
-            bw.write(headers);
-            bw.newLine();
-            bw.write((analysisBase));
-            bw.newLine();
-            bw.write(analysisPolicy);
-            bw.flush();
-            bw.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     
     public String convertToCSV(String[] data) {
         return Stream.of(data)
